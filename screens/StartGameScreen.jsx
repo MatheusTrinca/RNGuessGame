@@ -10,7 +10,13 @@ const StartGameScreen = () => {
       </View>
       <View style={styles.formContainer}>
         <Text style={styles.formHeading}>Enter a Number</Text>
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          maxLength={2}
+          keyboardType="number-pad"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
         <View style={styles.buttonsContainer}>
           <PrimaryButton>Reset</PrimaryButton>
           <PrimaryButton>Confirm</PrimaryButton>
@@ -41,10 +47,10 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     alignItems: 'center',
-    width: 250,
+    width: 280,
     padding: 16,
     backgroundColor: '#53022b',
-    marginTop: 20,
+    marginTop: 30,
     borderRadius: 6,
     elevation: 6,
     shadowColor: 'black',
@@ -61,13 +67,16 @@ const styles = StyleSheet.create({
     borderBottomColor: '#cfab07',
     width: 50,
     marginTop: 12,
-    fontSize: 18,
+    fontSize: 22,
     paddingBottom: 4,
     color: '#cfab07',
+    textAlign: 'center',
   },
   buttonsContainer: {
+    width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    marginTop: 10,
   },
 });
