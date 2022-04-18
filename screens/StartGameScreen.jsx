@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Alert } from 'react-native';
 import { useState } from 'react';
 import PrimaryButton from '../components/PrimaryButton';
+import FormContainer from '../components/FormContainer';
+import Heading from '../components/Heading';
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ setUserNumber }) => {
   const [enteredNumber, setEnteredNumber] = useState('');
 
   function handleEnteredNumber(enteredText) {
@@ -10,8 +12,16 @@ const StartGameScreen = () => {
   }
 
   function confirmHandler() {
-    console.log(enteredNumber);
+    const chosenNumber = +enteredNumber;
+    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+      Alert.alert('Invalid Number', 'Number must be beetween 1 and 99', [
+        { text: 'Okay', style: 'destructive', onPress: cancelHandler },
+      ]);
+      return;
+    }
+    setUserNumber(chosenNumber);
     setEnteredNumber('');
+    console.log('Valid Number');
   }
 
   function cancelHandler() {
@@ -20,11 +30,8 @@ const StartGameScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.heading}>
-        <Text style={styles.text}>Guess My Number</Text>
-      </View>
-      <View style={styles.formContainer}>
-        <Text style={styles.formHeading}>Enter a Number</Text>
+      <Heading text="Choose a Number" />
+      <FormContainer title="Enter a Number">
         <TextInput
           style={styles.input}
           maxLength={2}
@@ -38,7 +45,7 @@ const StartGameScreen = () => {
           <PrimaryButton onPress={cancelHandler}>Reset</PrimaryButton>
           <PrimaryButton onPress={confirmHandler}>Confirm</PrimaryButton>
         </View>
-      </View>
+      </FormContainer>
     </View>
   );
 };
@@ -50,34 +57,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  heading: {
-    padding: 6,
-    borderWidth: 2,
-    borderColor: '#fff',
-    marginTop: 100,
-  },
-  text: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-  formContainer: {
-    alignItems: 'center',
-    width: 280,
-    padding: 16,
-    backgroundColor: '#53022b',
-    marginTop: 30,
-    borderRadius: 6,
-    elevation: 6,
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    shadowOpacity: 0.7,
-  },
-  formHeading: {
-    color: '#cfab07',
-    fontSize: 18,
-  },
+
   input: {
     borderBottomWidth: 1,
     borderBottomColor: '#cfab07',

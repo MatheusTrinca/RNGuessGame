@@ -1,10 +1,19 @@
-import { StyleSheet, ImageBackground } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import StartGameScreen from './screens/StartGameScreen';
-import { View } from 'react-native';
+import GameScreen from './screens/GameScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App() {
+  const [userNumber, setUserNumber] = useState('');
+
+  let screen = <StartGameScreen setUserNumber={setUserNumber} />;
+
+  if (userNumber) {
+    screen = <GameScreen />;
+  }
+
   return (
     <>
       <StatusBar />
@@ -15,7 +24,7 @@ export default function App() {
           style={styles.rootScreen}
           imageStyle={styles.imageStyle}
         >
-          <StartGameScreen />
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
         </ImageBackground>
       </LinearGradient>
     </>
