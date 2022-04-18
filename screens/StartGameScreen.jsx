@@ -21,7 +21,6 @@ const StartGameScreen = ({ setUserNumber }) => {
     }
     setUserNumber(chosenNumber);
     setEnteredNumber('');
-    console.log('Valid Number');
   }
 
   function cancelHandler() {
