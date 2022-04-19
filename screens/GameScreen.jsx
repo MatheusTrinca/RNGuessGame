@@ -3,6 +3,7 @@ import FormContainer from '../components/FormContainer';
 import Heading from '../components/Heading';
 import OldGuess from '../components/OldGuess';
 import PrimaryButton from '../components/PrimaryButton';
+import Colors from '../constants/Colors';
 
 const GameScreen = () => {
   return (
@@ -37,12 +38,12 @@ const styles = StyleSheet.create({
     width: 280,
     paddingVertical: 10,
     borderWidth: 2,
-    borderColor: '#fff',
+    borderColor: Colors.white,
     marginTop: 100,
   },
   text: {
     textAlign: 'center',
-    color: '#fff',
+    color: Colors.white,
     fontWeight: 'bold',
     fontSize: 20,
   },
@@ -50,11 +51,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 100,
     paddingVertical: 20,
     borderWidth: 4,
-    borderColor: '#cfab07',
+    borderColor: Colors.secondary600,
     marginTop: 30,
   },
   number: {
-    color: '#cfab07',
+    color: Colors.secondary600,
     fontSize: 30,
   },
   buttonsContainer: {

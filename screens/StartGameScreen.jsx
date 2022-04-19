@@ -3,6 +3,7 @@ import { useState } from 'react';
 import PrimaryButton from '../components/PrimaryButton';
 import FormContainer from '../components/FormContainer';
 import Heading from '../components/Heading';
+import Colors from '../constants/Colors';
 
 const StartGameScreen = ({ setUserNumber }) => {
   const [enteredNumber, setEnteredNumber] = useState('');
@@ -59,12 +60,12 @@ const styles = StyleSheet.create({
 
   input: {
     borderBottomWidth: 1,
-    borderBottomColor: '#cfab07',
+    borderBottomColor: Colors.secondary600,
     width: 50,
     marginTop: 12,
     fontSize: 22,
     paddingBottom: 4,
-    color: '#cfab07',
+    color: Colors.secondary600,
     textAlign: 'center',
   },
   buttonsContainer: {

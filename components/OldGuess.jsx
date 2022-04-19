@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
+import Colors from '../constants/Colors';
 
 const OldGuess = () => {
   return (
@@ -14,9 +15,9 @@ export default OldGuess;
 const styles = StyleSheet.create({
   container: {
     width: 290,
-    backgroundColor: '#cfab07',
+    backgroundColor: Colors.secondary600,
     borderWidth: 2,
-    borderColor: '#53022b',
+    borderColor: Colors.primary700,
     borderRadius: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',

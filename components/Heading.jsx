@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import Colors from '../constants/Colors';
 
 const Heading = ({ text }) => {
   return (
@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
     width: 280,
     paddingVertical: 10,
     borderWidth: 2,
-    borderColor: '#fff',
+    borderColor: Colors.white,
     marginTop: 100,
   },
   text: {
     textAlign: 'center',
-    color: '#fff',
+    color: Colors.white,
     fontWeight: 'bold',
     fontSize: 20,
   },

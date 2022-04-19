@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
+import Colors from '../constants/Colors';
 
 const FormContainer = ({ children, title }) => {
   return (
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 280,
     padding: 16,
-    backgroundColor: '#53022b',
+    backgroundColor: Colors.primary700,
     marginTop: 30,
     borderRadius: 6,
     elevation: 6,
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.7,
   },
   formHeading: {
-    color: '#cfab07',
+    color: Colors.secondary600,
     fontSize: 22,
   },
 });
