@@ -62,7 +62,7 @@ function GameScreen({ userNumber, onGameOver }) {
       currentGuess
     );
     setCurrentGuess(newRndNumber);
-    setGuessRounds((prevGuessRounds) => [newRndNumber, ...prevGuessRounds]);
+    setGuessRounds(prevGuessRounds => [newRndNumber, ...prevGuessRounds]);
   }
 
   const guessRoundsListLength = guessRounds.length;
@@ -92,13 +92,13 @@ function GameScreen({ userNumber, onGameOver }) {
         {/* {guessRounds.map(guessRound => <Text key={guessRound}>{guessRound}</Text>)} */}
         <FlatList
           data={guessRounds}
-          renderItem={(itemData) => (
+          renderItem={itemData => (
             <GuessLogItem
               roundNumber={guessRoundsListLength - itemData.index}
               guess={itemData.item}
             />
           )}
-          keyExtractor={(item) => item}
+          keyExtractor={item => item}
         />
       </View>
     </View>
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24,
+    alignItems: 'center',
   },
   instructionText: {
     marginBottom: 12,
