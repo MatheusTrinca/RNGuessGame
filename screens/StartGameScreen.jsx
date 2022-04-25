@@ -5,7 +5,7 @@ import FormContainer from '../components/FormContainer';
 import Heading from '../components/Heading';
 import Colors from '../constants/Colors';
 
-const StartGameScreen = ({ setUserNumber }) => {
+const StartGameScreen = ({ setUserNumber, onPickNumber }) => {
   const [enteredNumber, setEnteredNumber] = useState('');
 
   function handleEnteredNumber(enteredText) {
@@ -20,7 +20,7 @@ const StartGameScreen = ({ setUserNumber }) => {
       ]);
       return;
     }
-    setUserNumber(chosenNumber);
+    onPickNumber(chosenNumber);
     setEnteredNumber('');
   }
 

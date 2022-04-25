@@ -3,15 +3,32 @@ import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
+import GameOverScreen from './screens/GameOverScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App() {
   const [userNumber, setUserNumber] = useState('');
+  const [gameIsOver, setGameIsOver] = useState(true);
 
-  let screen = <StartGameScreen setUserNumber={setUserNumber} />;
+  const pickedNumberHandler = pickedNumber => {
+    setUserNumber(pickedNumber);
+    setGameIsOver(false);
+  };
+
+  const gameOverHandler = () => {
+    setGameIsOver(true);
+  };
+
+  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
   if (userNumber) {
-    screen = <GameScreen />;
+    screen = (
+      <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
+    );
+  }
+
+  if (gameIsOver && userNumber) {
+    screen = <GameOverScreen />;
   }
 
   return (
@@ -39,3 +56,5 @@ const styles = StyleSheet.create({
     opacity: 0.25,
   },
 });
+
+// Colocar icones + / -

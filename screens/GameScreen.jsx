@@ -1,21 +1,68 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
+import { useState, useEffect } from 'react';
 import FormContainer from '../components/FormContainer';
+import GuessContainer from '../components/GuessContainer';
 import Heading from '../components/Heading';
 import OldGuess from '../components/OldGuess';
 import PrimaryButton from '../components/PrimaryButton';
 import Colors from '../constants/Colors';
 
-const GameScreen = () => {
+function generateRandomBetween(min, max, exclude) {
+  const rndNum = Math.floor(Math.random() * (max - min)) + min;
+
+  if (rndNum === exclude) {
+    return generateRandomBetween(min, max, exclude);
+  } else {
+    return rndNum;
+  }
+}
+
+let minBoundary = 1;
+let maxBoundary = 100;
+
+const GameScreen = ({ userNumber, onGameOver }) => {
+  const initialGuess = generateRandomBetween(1, 100, userNumber);
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+      onGameOver();
+    }
+  }, [currentGuess, userNumber, onGameOver]);
+
+  const nextGuess = direction => {
+    if (
+      (direction === 'lower' && currentGuess < userNumber) ||
+      (direction === 'higher' && currentGuess > userNumber)
+    ) {
+      Alert.alert("Don't lie!!", 'You know that it is wrong', [
+        { text: 'Sorry', style: 'cancel' },
+      ]);
+      return;
+    }
+    if (direction === 'lower') {
+      maxBoundary = currentGuess - 1;
+    } else {
+      minBoundary = currentGuess + 1;
+    }
+    const nextRandom = generateRandomBetween(
+      minBoundary,
+      maxBoundary,
+      currentGuess
+    );
+    setCurrentGuess(nextRandom);
+  };
+
   return (
     <View style={styles.container}>
       <Heading text="Opponent's Number" />
-      <View style={styles.numberContainer}>
-        <Text style={styles.number}>41</Text>
-      </View>
+      <GuessContainer guess={currentGuess} />
       <FormContainer title="Higher or Lower?">
         <View style={styles.buttonsContainer}>
-          <PrimaryButton>+</PrimaryButton>
-          <PrimaryButton>-</PrimaryButton>
+          <PrimaryButton onPress={nextGuess.bind(this, 'lower')}>
+            -
+          </PrimaryButton>
+          <PrimaryButton onPress={() => nextGuess('higher')}>+</PrimaryButton>
         </View>
       </FormContainer>
       <View style={styles.oldGuessesContainer}>
@@ -47,17 +94,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
   },
-  numberContainer: {
-    paddingHorizontal: 100,
-    paddingVertical: 20,
-    borderWidth: 4,
-    borderColor: Colors.secondary600,
-    marginTop: 30,
-  },
-  number: {
-    color: Colors.secondary600,
-    fontSize: 30,
-  },
+
   buttonsContainer: {
     width: '90%',
     flexDirection: 'row',
