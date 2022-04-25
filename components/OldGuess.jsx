@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Colors from '../constants/Colors';
 
-const OldGuess = () => {
+const OldGuess = ({ guess, index }) => {
   return (
     <View style={styles.container}>
-      <Text>#1</Text>
-      <Text>Opponents Guess: 41</Text>
+      <Text>#{index}</Text>
+      <Text>Opponents Guess: {guess}</Text>
     </View>
   );
 };

@@ -26,10 +26,11 @@ const styles = StyleSheet.create({
   btnOuterContainer: {
     borderRadius: 12,
     overflow: 'hidden',
+    minWidth: 100,
   },
   btnInnerContainer: {
     alignItems: 'center',
-    width: 100,
+    width: '100%',
     paddingVertical: 6,
     paddingHorizontal: 10,
     backgroundColor: Colors.primary500,
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
   },
   text: {
+    fontFamily: 'open-sans',
     color: 'white',
   },
   pressed: {

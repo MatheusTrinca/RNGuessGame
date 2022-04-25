@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   number: {
+    fontFamily: 'open-sans-bold',
     color: Colors.secondary600,
     fontSize: 30,
   },

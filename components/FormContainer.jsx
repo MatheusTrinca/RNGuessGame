@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.7,
   },
   formHeading: {
+    fontFamily: 'open-sans',
     color: Colors.secondary600,
     fontSize: 22,
   },
